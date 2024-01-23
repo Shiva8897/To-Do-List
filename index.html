@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+       body {
+            font-family: Arial, sans-serif;
+        }
+        h2{
+            color: blue;
+        }
+       
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        input[type="text"] {
+            width: 97%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px;
+            border: 1px solid #ccc;
+            margin-bottom: 5px;
+        }
+        .del{
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        #add{
+            width: 100px;
+        }
+    
+</style>
+<body>
+    
+    <div class="container">
+        <h2>TO-DO LIST</h2> 
+       <div id="newtask">
+        <input type="text" id="taskinfo" placeholder="add task here">
+        <button id="add">Add</button>
+       </div>
+       <ul id="tasklist"></ul>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded",function(){
+            var taskinfo=document.getElementById("taskinfo");
+            var addtask=document.getElementById("add");
+            var tasklist=document.getElementById("tasklist");
+
+            addtask.addEventListener("click",function(){
+
+                let tasktext=taskinfo.value.trim();
+                if(tasktext!==""){
+                    let listitem=document.createElement("li");
+                    listitem.innerHTML=`${tasktext} <button class="del">del</button>`
+                    tasklist.appendChild(listitem);
+                    tasktext.value=""
+
+                    var deletebtn=document.querySelector(".del")
+                    deletebtn.addEventListener("click",function(){
+                        tasklist.removeChild(listitem);
+                    })
+                }
+            })
+        })
+    </script>
+</body>
+</html>
